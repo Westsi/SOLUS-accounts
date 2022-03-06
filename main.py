@@ -14,6 +14,7 @@ import uuid
 import json
 import absolute_url
 import passlib.hash
+import tkinter as tk
 
 
 def create_new_user(username, password):
@@ -40,10 +41,25 @@ def cli_new_user():
     create_new_user(pref_username.lower(), password)
 
 
+def get_tk_input():
+    username_input = username.get(1.0, "end-1c")
+    password_input = passlib.hash.sha512_crypt.hash(password.get(1.0, "end-1c"))
+    create_new_user(username_input.lower, password_input)
+
+
 # user list
 user_list = open('user_list.txt', 'r')
 users = user_list.readlines()
 print(users)
 user_list.close()
 
-#cli_new_user()
+window = tk.Tk()
+window.title("Welcome to the SOLUS")
+window.geometry('400x200')
+username_label = tk.Label(window, text="Username:")
+username = tk.Text(window)
+password_label = tk.Label(window, text="Password:")
+password = tk.Text(window)
+
+signup_button = tk.Button(window, text="Join the SOLUS!", command=get_tk_input)
+# cli_new_user()
