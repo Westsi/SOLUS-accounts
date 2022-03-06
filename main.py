@@ -2,9 +2,11 @@
 import uuid
 import json
 import absolute_url
+import passlib.hash
 
-def create_new_user(username):
-    data = {'Username': username, 'UUID': str(uuid.uuid4()), 'Balance': 1000}
+
+def create_new_user(username, password):
+    data = {'Username': username, 'Pass': password, 'UUID': str(uuid.uuid4()), 'Balance': 1000}
     print(data)
     user_list_write = open('user_list.txt', 'a')
     try:
@@ -22,7 +24,9 @@ def create_new_user(username):
 
 def cli_new_user():
     pref_username = input("Enter a username: \n")
-    create_new_user(pref_username.lower())
+    password = passlib.hash.sha512_crypt.hash(input("Password:\n"))
+
+    create_new_user(pref_username.lower(), password)
 
 
 # user list
