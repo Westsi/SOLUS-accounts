@@ -1,3 +1,14 @@
+"""
+To store in jsons
+Username
+Hashed password
+UUID- why?!
+bank balance
+character
+date account made
+email address
+"""
+
 # imports
 import uuid
 import json
@@ -10,7 +21,7 @@ def create_new_user(username, password):
     print(data)
     user_list_write = open('user_list.txt', 'a')
     try:
-        # do absolute link to desktop/solus/users
+        # absolute url is complete url, secret for privacy reasons. C:/user/...
         file_for_storage = absolute_url.absolute_url + data['Username'].lower() + '.json'
         with open(file_for_storage, 'x') as file:
             json.dump(data, file)
@@ -35,4 +46,4 @@ users = user_list.readlines()
 print(users)
 user_list.close()
 
-cli_new_user()
+#cli_new_user()
