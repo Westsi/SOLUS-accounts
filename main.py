@@ -1,7 +1,7 @@
 # imports
 import uuid
 import json
-
+import absolute_url
 
 def create_new_user(username):
     data = {'Username': username, 'UUID': str(uuid.uuid4()), 'Balance': 1000}
@@ -9,7 +9,7 @@ def create_new_user(username):
     user_list_write = open('user_list.txt', 'a')
     try:
         # do absolute link to desktop/solus/users
-        file_for_storage = 'C:/Users/jamie/Desktop/SOLUS/USERS/' + data['Username'].lower() + '.json'
+        file_for_storage = absolute_url.absolute_url + data['Username'].lower() + '.json'
         with open(file_for_storage, 'x') as file:
             json.dump(data, file)
         user_list_write.write(username.lower() + '\n')
