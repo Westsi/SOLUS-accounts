@@ -20,7 +20,8 @@ import tkinter as tk
 def create_new_user(username, password):
     data = {'Username': username, 'Pass': password, 'UUID': str(uuid.uuid4()), 'Balance': 1000}
     print(data)
-    user_list_write = open('user_list.txt', 'a')
+    ulurl = absolute_url.ul_absolute
+    user_list_write = open(ulurl, 'a')
     try:
         # absolute url is complete url, secret for privacy reasons. C:/user/...
         file_for_storage = absolute_url.absolute_url + data['Username'].lower() + '.json'
@@ -48,7 +49,8 @@ def get_tk_input():
 
 
 # user list
-user_list = open('user_list.txt', 'r')
+ulurl = absolute_url.ul_absolute
+user_list = open(ulurl, 'r')
 users = user_list.readlines()
 print(users)
 user_list.close()
